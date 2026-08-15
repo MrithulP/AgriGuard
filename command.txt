@@ -1,0 +1,66 @@
+1. Create the virtual environment
+py -3.12 -m venv .venv
+2. You don't need to activate it
+
+Because PowerShell's execution policy gave you trouble earlier, just use the .venv Python directly.
+
+Check it:
+
+.venv\Scripts\python.exe --version
+
+You should get something like:
+
+Python 3.12.5
+3. Install the dependencies
+.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+
+If pip isn't available inside the new environment:
+
+.venv\Scripts\python.exe -m ensurepip --upgrade
+
+Then:
+
+.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+4. Initialize the database
+
+Only do this if you're setting up the project for the first time or intentionally resetting the database.
+
+.venv\Scripts\python.exe backend\schema.py
+
+You should see something like:
+
+Databases initialized.
+5. Start the FarmGuard backend
+.venv\Scripts\python.exe -m uvicorn backend.main:app --reload
+
+You should see:
+
+Uvicorn running on http://127.0.0.1:8000
+Application startup complete.
+
+Then open:
+
+http://127.0.0.1:8000
+
+The complete copy-paste version
+
+For a fresh setup:
+
+py -3.12 -m venv .venv
+.venv\Scripts\python.exe --version
+.venv\Scripts\python.exe -m ensurepip --upgrade
+.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+.venv\Scripts\python.exe backend\schema.py
+.venv\Scripts\python.exe -m uvicorn backend.main:app --reload
+Every time you come back to the project
+
+You don't need to recreate .venv or run schema.py.
+
+Just:
+
+cd "C:\Users\vijay\OneDrive\Desktop\farmguard_prototype"
+.venv\Scripts\python.exe -m uvicorn backend.main:app --reload
+
+Then open:
+
+http://127.0.0.1:8000
